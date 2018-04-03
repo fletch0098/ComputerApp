@@ -20,8 +20,10 @@ namespace ComputerDAL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Computer>().ToTable("Computer");
+            modelBuilder.Entity<Memory>().ToTable("Memory");
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Computer> Computers { get; set; }
+        public DbSet<Memory> Memories { get; set; }
     }
 }

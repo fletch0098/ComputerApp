@@ -14,6 +14,11 @@ using ComputerDAL;
 using ComputerLibrary.Models;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 
+using Swashbuckle.AspNetCore.Swagger;
+
+using System.IO;
+
+
 namespace ComputerWebAPI
 {
     public class Startup
@@ -33,6 +38,8 @@ namespace ComputerWebAPI
                     b => b.MigrationsAssembly("ComputerWebAPI")));
             services.AddSingleton(typeof(IDataRepository<Computer, long>), typeof(ComputerManager));
             services.AddTransient(typeof(IDataRepository<Computer, long>), typeof(ComputerManager));
+            services.AddSingleton(typeof(IDataRepository<Memory, long>), typeof(MemoryManager));
+            services.AddTransient(typeof(IDataRepository<Memory, long>), typeof(MemoryManager));
             //services.AddDbContext<ComputerContext>(opt => opt.UseInMemoryDatabase("ComputerDB"));
 
             services.AddCors(options =>
@@ -46,11 +53,19 @@ namespace ComputerWebAPI
 
             });
 
-            //services.AddMvc();
+            services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
+
             services.AddMvc(options =>
             {
                 options.Filters.Add(new CorsAuthorizationFilterFactory("LocalDev"));
                // options.Filters.Add(new CorsAuthorizationFilterFactory("Prod"));
+            });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "ComputerApp API", Version = "v1" });
             });
         }
 
@@ -61,9 +76,24 @@ namespace ComputerWebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-            //app.UseCors("UILocal");
-            //app.UseMvc();
-            app.UseMvcWithDefaultRoute();
+
+            app.UseSwagger(c =>
+            {
+                c.PreSerializeFilters.Add((swagger, httpReq) => swagger.Host = httpReq.Host.Value);
+            });
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ComputerApp API V1");
+            });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                name: "default",
+                template: "{controller}/{action}/{id?}",
+                defaults: new { controller = "swagger", action = "Index" });
+            });
         }
     }
 }

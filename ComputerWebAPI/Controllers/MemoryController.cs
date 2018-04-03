@@ -7,40 +7,40 @@ using ComputerDAL;
 namespace ComputerWebAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class ComputerController : Controller
+    public class MemoryController : Controller
     {
-        private IDataRepository<Computer, long> _iRepo;
-        public ComputerController(IDataRepository<Computer, long> repo)
+        private IDataRepository<Memory, long> _iRepo;
+        public MemoryController(IDataRepository<Memory, long> repo)
         {
             _iRepo = repo;
         }
 
         // GET: api/values
         [HttpGet]
-        public IEnumerable<Computer> Get()
+        public IEnumerable<Memory> Get()
         {
             return _iRepo.GetAll();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public Computer Get(int id)
+        public Memory Get(int id)
         {
             return _iRepo.Get(id);
         }
 
         // POST api/values
         [HttpPost]
-        public long Post([FromBody]Computer computer)
+        public long Post([FromBody]Memory entity)
         {
-            return _iRepo.Add(computer);
+            return _iRepo.Add(entity);
         }
 
         // POST api/values
         [HttpPut]
-        public long Put([FromBody]Computer computer)
+        public long Put([FromBody]Memory entity)
         {
-            return _iRepo.Update(computer.ComputerId, computer);
+            return _iRepo.Update(entity.MemoryId, entity);
         }
 
         // DELETE api/values/5

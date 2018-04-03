@@ -2,20 +2,33 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ComputerLibrary.Models
 {
     public class Computer
     {
         [Key]
-        public long Id { get; set; }
+        public long ComputerId { get; set; }
         public string ConfiguracionName { get; set; }
-        public string Memory { get; set; }
+        [ForeignKey("Memory")]
+        public long MemoryId { get; set; }
         public string Processor { get; set; }
         public string HardDrive { get; set; }
         public DateTime LastModified { get; set; }
 
-        public Computer(string ConfiguracionName, string Memory, string Processor, string HardDrive)
+        public virtual Memory Memory { get; set; }
+
+        public Computer(string ConfiguracionName, int Memory, string Processor, string HardDrive)
+        {
+            this.ConfiguracionName = ConfiguracionName;
+            this.HardDrive = HardDrive;
+            this.LastModified = DateTime.Now;
+            this.MemoryId = Memory;
+            this.Processor = Processor;
+        }
+
+        public Computer(string ConfiguracionName, Memory Memory, string Processor, string HardDrive)
         {
             this.ConfiguracionName = ConfiguracionName;
             this.HardDrive = HardDrive;
@@ -27,6 +40,12 @@ namespace ComputerLibrary.Models
         public Computer()
         {
 
+        }
+
+        public string PrintAllSpecs()
+        {
+            string AllSpecs = string.Format("{0}: {1}", this.ConfiguracionName, this.Memory.PrintAllSpecs());
+            return AllSpecs;
         }
     }
 

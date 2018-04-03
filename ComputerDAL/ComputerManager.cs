@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using ComputerLibrary.Models;
 using System.Linq;
+using System.Web;
+using Microsoft.EntityFrameworkCore;
 
 namespace ComputerDAL
 {
@@ -16,13 +18,20 @@ namespace ComputerDAL
 
         public Computer Get(long id)
         {
-            var computer = ctx.Computers.FirstOrDefault(b => b.Id == id);
-            return computer;
+
+
+            var query = from q in ctx.Computers.Include("Memory")
+                        where q.ComputerId == id
+                        select q;
+
+            return query.FirstOrDefault();
+            //var computer = ctx.Computers.FirstOrDefault(b => b.ComputerId == id);
+            //return computer;
         }
 
         public IEnumerable<Computer> GetAll()
         {
-            var computers = ctx.Computers.ToList();
+            var computers = ctx.Computers.Include("Memory").ToList();
             return computers;
         }
 
@@ -37,7 +46,7 @@ namespace ComputerDAL
         public long Delete(long id)
         {
             int computerId = 0;
-            var computer = ctx.Computers.FirstOrDefault(b => b.Id == id);
+            var computer = ctx.Computers.FirstOrDefault(b => b.ComputerId == id);
             if (computer != null)
             {
                 ctx.Computers.Remove(computer);

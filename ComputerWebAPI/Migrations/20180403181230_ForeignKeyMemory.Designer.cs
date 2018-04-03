@@ -11,9 +11,10 @@ using System;
 namespace ComputerWebAPI.Migrations
 {
     [DbContext(typeof(ComputerContext))]
-    partial class ComputerContextModelSnapshot : ModelSnapshot
+    [Migration("20180403181230_ForeignKeyMemory")]
+    partial class ForeignKeyMemory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

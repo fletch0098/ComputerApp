@@ -11,9 +11,10 @@ using System;
 namespace ComputerWebAPI.Migrations
 {
     [DbContext(typeof(ComputerContext))]
-    partial class ComputerContextModelSnapshot : ModelSnapshot
+    [Migration("20180403171251_CreateMemory")]
+    partial class CreateMemory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,13 +32,15 @@ namespace ComputerWebAPI.Migrations
 
                     b.Property<DateTime>("LastModified");
 
-                    b.Property<long>("MemoryId");
+                    b.Property<int>("MemoryId");
+
+                    b.Property<long?>("MemoryId1");
 
                     b.Property<string>("Processor");
 
                     b.HasKey("ComputerId");
 
-                    b.HasIndex("MemoryId");
+                    b.HasIndex("MemoryId1");
 
                     b.ToTable("Computer");
                 });
@@ -64,8 +67,7 @@ namespace ComputerWebAPI.Migrations
                 {
                     b.HasOne("ComputerLibrary.Models.Memory", "Memory")
                         .WithMany("Computers")
-                        .HasForeignKey("MemoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("MemoryId1");
                 });
 #pragma warning restore 612, 618
         }
