@@ -1,0 +1,9 @@
+<h3>Top Computers</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let computer of computers" class="col-1-4" routerLink="../computers/detail/{{computer.id}}" >
+    <div class="module compter">
+      <h4>{{computer.configuracionName}}</h4>
+    </div>
+  </a>
+</div>
+<app-computer-search></app-computer-search>

@@ -1,0 +1,41 @@
+<div *ngIf="computer">
+  <h2>
+    {{ computer.configuracionName | uppercase }} Details
+  </h2>
+  <div>
+    <span>id: </span>{{computer.id}}
+  </div>
+  <div>
+    <label>
+      configuracionName:
+      <input [(ngModel)]="computer.configuracionName" placeholder="configuracionName">
+    </label>
+  </div>
+  <div>
+    <label>
+      processor:
+      <input [(ngModel)]="computer.processor" placeholder="processor">
+    </label>
+  </div>
+  <div>
+    <label>
+      memory:
+      <input [(ngModel)]="computer.memory" placeholder="memory">
+    </label>
+  </div>
+  <div>
+    <label>
+      hardDrive:
+      <input [(ngModel)]="computer.hardDrive" placeholder="hardDrive">
+    </label>
+  </div>
+  <div>
+    <label>
+      lastModified:
+    </label>
+    <div>{{computer.lastModified | date:"yyyy-MM-dd HH:mm:ss"}}</div>
+  </div>
+</div>
+<button (click)="save()">save</button>
+<button (click)="goBack()">go back</button>
+<button (click)="delete()">Delete</button>

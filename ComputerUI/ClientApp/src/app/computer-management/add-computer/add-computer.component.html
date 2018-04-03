@@ -1,0 +1,33 @@
+<div>
+  <div>
+    <label>
+      Configuracion name:
+      <input #configuracionName />
+    </label>
+  </div>
+  <div>
+    <label>
+      Memory:
+      <input #memory />
+    </label>
+  </div>
+  <div>
+    <label>
+      processor:
+      <input #processor />
+    </label>
+  </div>
+  <div>
+    <label>
+      hard Drive:
+      <input #hardDrive />
+    </label>
+  </div>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(configuracionName.value,memory.value,processor.value,hardDrive.value); configuracionName.value='';memory.value='';processor.value='';hardDrive.value=''">
+    add
+  </button>
+  <button (click)="goBack()">go back</button>
+</div>
+
+

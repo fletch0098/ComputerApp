@@ -1,0 +1,57 @@
+<h2>My Computers</h2>
+<ul class="computers">
+  <li *ngFor="let computer of computers">
+    <a routerLink="detail/{{computer.id}}">
+      <span class="badge">{{computer.id}}</span> {{computer.configuracionName}}
+    </a>
+    <button class="delete" title="delete computer"
+            (click)="delete(computer)">
+      x
+    </button>
+  </li>
+</ul>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Brian´s Computer Company</h2>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <table id="productTable"
+           class="table table-bordered
+                 table-condensed table-striped">
+      <thead>
+        <tr>
+          <th>Edit</th>
+          <th>Configuration Name</th>
+          <th>Processor</th>
+          <th>Memory</th>
+          <th>Hard Drive</th>
+          <th>Modified Date</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let computer of computers">
+          <td>
+            <a routerLink="detail/{{computer.id}}" class="btn btn-default" >
+              <span class="glyphicon glyphicon-edit"></span>
+              </a>
+          </td>
+          <td>{{computer.configuracionName}}</td>
+          <td>{{computer.processor}}</td>
+          <td>{{computer.memory}}</td>
+          <td>{{computer.hardDrive}}</td>
+          <td>{{computer.lastModified | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+          <td><button class="btn btn-default" title="delete computer"
+        (click)="delete(computer)">
+                <span class='glyphicon glyphicon-remove'></span>
+</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
