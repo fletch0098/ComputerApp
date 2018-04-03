@@ -31,6 +31,7 @@ export class ComputerDetailComponent implements OnInit {
   }
 
   save(): void {
+    console.log(this.computer);
     this.computerService.updateComputer(this.computer)
       .subscribe(() => this.goBack());
   }

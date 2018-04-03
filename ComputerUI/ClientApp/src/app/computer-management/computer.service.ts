@@ -15,8 +15,9 @@ const httpOptions = {
 @Injectable()
 export class ComputerService {
   private baseURL = 'https://computerwebapi20180331072552.azurewebsites.net/';
+  private localURL = 'http://localhost:53467/';
   private computersBase = 'api/computer';
-  private computersUrl = this.baseURL + this.computersBase;  // URL to web api
+  private computersUrl = this.localURL + this.computersBase;  // URL to web api
 
   constructor(
     private http: HttpClient,
@@ -80,7 +81,7 @@ export class ComputerService {
 
   /** DELETE: delete the computer from the server */
   deleteComputer(computer: Computer | number): Observable<Computer> {
-    const id = typeof computer === 'number' ? computer : computer.id;
+    const id = typeof computer === 'number' ? computer : computer.computerId;
     const url = `${this.computersUrl}/${id}`;
 
     return this.http.delete<Computer>(url, httpOptions).pipe(
@@ -91,8 +92,9 @@ export class ComputerService {
 
   /** PUT: update the computer on the server */
   updateComputer(computer: Computer): Observable<any> {
+    console.log(computer);
     return this.http.put(this.computersUrl, computer, httpOptions).pipe(
-      tap(_ => this.log(`updated computer id=${computer.id}`)),
+      tap(_ => this.log(`updated computer id=${computer.computerId}`)),
       catchError(this.handleError<any>('updateComputer'))
     );
   }

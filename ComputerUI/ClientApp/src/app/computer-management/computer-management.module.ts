@@ -5,10 +5,6 @@ import { FormsModule, NgModel } from '@angular/forms'; // <-- NgModel lives here
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
-
-
 import { ComputerManagementComponent } from '../computer-management/computer-management.component';
 import { ComputersComponent } from '../computer-management/computers/computers.component';
 import { ComputerDetailComponent } from '../computer-management/computer-detail/computer-detail.component';

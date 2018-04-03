@@ -1,8 +1,8 @@
 <h2>My Computers</h2>
 <ul class="computers">
   <li *ngFor="let computer of computers">
-    <a routerLink="detail/{{computer.id}}">
-      <span class="badge">{{computer.id}}</span> {{computer.configuracionName}}
+    <a routerLink="detail/{{computer.computerId}}">
+      <span class="badge">{{computer.computerId}}</span> {{computer.configuracionName}}
     </a>
     <button class="delete" title="delete computer"
             (click)="delete(computer)">
@@ -37,7 +37,7 @@
       <tbody>
         <tr *ngFor="let computer of computers">
           <td>
-            <a routerLink="detail/{{computer.id}}" class="btn btn-default" >
+            <a routerLink="detail/{{computer.computerId}}" class="btn btn-default" >
               <span class="glyphicon glyphicon-edit"></span>
               </a>
           </td>

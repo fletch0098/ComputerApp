@@ -23,20 +23,26 @@ export class AddComputerComponent implements OnInit {
     this.location.back();
   }
 
-  add(configuracionName: string, memory: string, processor: string, hardDrive: string): void {
+  add(configuracionName: string, memoryId: number, processor: string, hardDrive: string): void {
 
     configuracionName = configuracionName.trim();
-    memory = memory.trim();
+    memoryId = memoryId;
     processor = processor.trim();
     hardDrive = hardDrive.trim();
 
 
     if (!configuracionName) { return; }
-    if (!memory) { return; }
+    if (!memoryId) { return; }
     if (!processor) { return; }
     if (!hardDrive) { return; }
 
-    this.computerService.addComputer({ configuracionName, memory, processor, hardDrive } as Computer)
+    var computer: Computer;
+    computer.configuracionName = configuracionName;
+    computer.hardDrive = hardDrive;
+    computer.memoryId = memoryId;
+    computer.processor = processor;
+    
+    this.computerService.addComputer(computer)
       .subscribe(() => this.goBack());
   }
 

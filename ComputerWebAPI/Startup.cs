@@ -45,7 +45,7 @@ namespace ComputerWebAPI
             services.AddCors(options =>
             {
                 options.AddPolicy("LocalDev",
-                    policy => policy.AllowAnyOrigin());
+                    policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
                 //options.AddPolicy("LocalDev",
                 //    policy => policy.WithOrigins("http://localhost:4200"));
                 //options.AddPolicy("Prod",
