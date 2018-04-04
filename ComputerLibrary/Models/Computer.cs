@@ -11,7 +11,7 @@ namespace ComputerLibrary.Models
         
         public long ComputerId { get; set; }
         public string ConfiguracionName { get; set; }
-        public long MemoryId { get; set; }
+        public long? MemoryId { get; set; }
         public string Processor { get; set; }
         public string HardDrive { get; set; }
         public DateTime LastModified { get; set; }

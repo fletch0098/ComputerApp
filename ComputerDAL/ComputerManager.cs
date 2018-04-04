@@ -39,8 +39,8 @@ namespace ComputerDAL
         {
             computer.LastModified = DateTime.Now;
             ctx.Computers.Add(computer);
-            long computerId = ctx.SaveChanges();
-            return computerId;
+            int result = ctx.SaveChanges();
+            return computer.ComputerId;
         }
 
         public long Delete(long id)
@@ -63,7 +63,7 @@ namespace ComputerDAL
             {
                 computer.ConfiguracionName = item.ConfiguracionName;
                 computer.HardDrive = item.HardDrive;
-                computer.Memory = item.Memory;
+                computer.MemoryId = item.MemoryId;
                 computer.Processor = item.Processor;
                 computer.LastModified = DateTime.Now;
 

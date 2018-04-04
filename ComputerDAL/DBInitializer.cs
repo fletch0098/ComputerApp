@@ -24,22 +24,22 @@ namespace ComputerDAL
             var Memories = new Memory[]
             {
             new Memory{  Brand = "Crucial", SizeGb = 8, Speed = "DDR3-1600" , LastModified=DateTime.Now},
-            new Memory{  Brand = "Crucial", SizeGb = 8, Speed = "DDR3-1600" , LastModified=DateTime.Now},
-            new Memory{  Brand = "Crucial", SizeGb = 8, Speed = "DDR3-1600" , LastModified=DateTime.Now},
-            new Memory{  Brand = "Crucial", SizeGb = 8, Speed = "DDR3-1600" , LastModified=DateTime.Now}
+            new Memory{  Brand = "Crucial", SizeGb = 16, Speed = "DDR3-1600" , LastModified=DateTime.Now},
+            new Memory{  Brand = "Kingston", SizeGb = 8, Speed = "DDR3-800" , LastModified=DateTime.Now},
+            new Memory{  Brand = "Kingston", SizeGb = 16, Speed = "DDR3-800" , LastModified=DateTime.Now}
             };
-            //foreach (Memory m in Memories)
-            //{
-            //    try
-            //    {
-            //        context.Memories.Add(m);
-            //    }
-            //    catch(Exception ex)
-            //    {
-            //        throw ex;
-            //    }
-                
-            //}
+
+            foreach (Memory m in Memories)
+            {
+                try
+                {
+                    context.Memories.Add(m);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
 
             var computers = new Computer[]
             {

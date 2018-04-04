@@ -36,13 +36,13 @@ export class AddComputerComponent implements OnInit {
     if (!processor) { return; }
     if (!hardDrive) { return; }
 
-    var computer: Computer;
-    computer.configuracionName = configuracionName;
-    computer.hardDrive = hardDrive;
-    computer.memoryId = memoryId;
-    computer.processor = processor;
+    //var computer: Computer;
+    //computer.configuracionName = configuracionName;
+    //computer.hardDrive = hardDrive;
+    //computer.memoryId = memoryId;
+    //computer.processor = processor;
     
-    this.computerService.addComputer(computer)
+    this.computerService.addComputer({ configuracionName, hardDrive, memoryId, processor} as Computer)
       .subscribe(() => this.goBack());
   }
 

@@ -11,9 +11,10 @@ using System;
 namespace ComputerWebAPI.Migrations
 {
     [DbContext(typeof(ComputerContext))]
-    partial class ComputerContextModelSnapshot : ModelSnapshot
+    [Migration("20180404215918_MemoryWorking")]
+    partial class MemoryWorking
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
