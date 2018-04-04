@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ComputerLibrary.Models
 {
@@ -12,7 +13,7 @@ namespace ComputerLibrary.Models
             this.Computers = new HashSet<Computer>();
         }
 
-        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public long MemoryId { get; set; }
         public string Brand { get; set; }
         public int SizeGb { get; set; }

@@ -8,10 +8,9 @@ namespace ComputerLibrary.Models
 {
     public class Computer
     {
-        [Key]
+        
         public long ComputerId { get; set; }
         public string ConfiguracionName { get; set; }
-        [ForeignKey("Memory")]
         public long MemoryId { get; set; }
         public string Processor { get; set; }
         public string HardDrive { get; set; }
