@@ -16,8 +16,13 @@ export class DashboardComponent implements OnInit {
     this.getComputers();
   }
 
+  dashboardfilter(computer: Computer, index, array) {
+    return (computer.memory.sizeGb >= 16);
+}
+
   getComputers(): void {
     this.computerService.getComputers()
-      .subscribe(computers => this.computers = computers.slice(0, 4));
+      //.subscribe(computers => this.computers = computers.slice(0, 4));
+      .subscribe(computers => this.computers = computers.filter(this.dashboardfilter));
   }
 }

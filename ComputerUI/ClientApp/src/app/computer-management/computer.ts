@@ -11,7 +11,7 @@ export class Computer {
 export class Memory {
   memoryId: number;
   brand: string;
-  sizeGb: string;
+  sizeGb: number;
   speed: string;
   lastModified: string;
 }

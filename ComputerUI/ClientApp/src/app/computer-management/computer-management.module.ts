@@ -12,10 +12,17 @@ import { ComputerService } from './computer.service';
 import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
 
+import { AddMemoryComponent } from './memory/add-memory/add-memory.component';
+import { MemoryDetailComponent } from './memory/memory-detail/memory-detail.component';
+import { MemoryComponent } from './memory/memory.component';
+
 import { ComputerManagementRoutingModule } from './computer-management-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ComputerSearchComponent } from './computer-search/computer-search.component';
 import { AddComputerComponent } from './add-computer/add-computer.component';
+import { MemoryService } from './memory/memory.service';
+import { ComputerFormComponent } from './computer-form/computer-form.component';
+import { MemoryFormComponent } from './memory/memory-form/memory-form.component';
 
 @NgModule({
   imports: [
@@ -39,7 +46,9 @@ import { AddComputerComponent } from './add-computer/add-computer.component';
     DashboardComponent,
     ComputerSearchComponent,
     AddComputerComponent,
+    ComputerFormComponent,
+    AddMemoryComponent, MemoryDetailComponent, MemoryComponent, MemoryFormComponent
   ],
-  providers: [ComputerService, MessageService]
+  providers: [ComputerService, MessageService, MemoryService]
 })
 export class ComputerManagementModule { }

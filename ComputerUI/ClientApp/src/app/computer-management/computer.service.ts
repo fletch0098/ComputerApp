@@ -40,7 +40,7 @@ export class ComputerService {
         map(computers => computers[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} computer id=${id}`);
+          this.logError(`${outcome} computer id=${id}`);
         }),
         catchError(this.handleError<Computer>(`getComputer id=${id}`))
       );
@@ -112,7 +112,7 @@ export class ComputerService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
+      this.logError(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
@@ -121,6 +121,9 @@ export class ComputerService {
 
   /** Log a ComputerService message with the MessageService */
   private log(message: string) {
-    this.messageService.add('ComputerService: ' + message);
+    this.messageService.add('info','ComputerService: ' + message);
+  }
+  private logError(message: string) {
+    this.messageService.add('danger', 'ComputerService: ' + message);
   }
 }

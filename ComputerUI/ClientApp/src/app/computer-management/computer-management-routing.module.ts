@@ -6,6 +6,10 @@ import { ComputersComponent } from '../computer-management/computers/computers.c
 import { ComputerDetailComponent } from '../computer-management/computer-detail/computer-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddComputerComponent } from './add-computer/add-computer.component';
+import { Memory } from './computer';
+import { AddMemoryComponent } from './memory/add-memory/add-memory.component';
+import { MemoryDetailComponent } from './memory/memory-detail/memory-detail.component';
+import { MemoryComponent } from './memory/memory.component';
 
 const computerManagementRoutes: Routes = [
   {
@@ -19,6 +23,7 @@ const computerManagementRoutes: Routes = [
           { path: 'computers', component: ComputersComponent },
           { path: 'computers/detail/:id', component: ComputerDetailComponent },
           { path: 'dashboard', component: DashboardComponent },
+          { path: 'memory', component: MemoryComponent },
           { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
         ]
       }

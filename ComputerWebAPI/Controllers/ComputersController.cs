@@ -24,9 +24,18 @@ namespace ComputerWebAPI.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public Computer Get(int id)
+        public IActionResult Get(int id)
         {
-            return _iRepo.Get(id);
+            var ret = _iRepo.Get(id);
+            if (ret != null)
+            {
+                return Ok(ret);
+            }
+            else
+            {
+                return NotFound();
+            }
+            
         }
 
         // POST api/values

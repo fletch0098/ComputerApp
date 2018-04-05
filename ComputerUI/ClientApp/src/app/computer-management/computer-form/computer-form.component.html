@@ -1,0 +1,60 @@
+<div *ngIf="model">
+
+  <div class="container col-sm-6">
+
+    <h1>Computer Form</h1>
+
+    <form (ngSubmit)="onSubmit()" #computerForm="ngForm">
+
+      <!--{{diagnostic}}-->
+
+      <div class="form-group">
+        <label for="configuracionName">Configuracion Name</label>
+        <input type="text" placeholder="My Computer" class="form-control" id="configuracionName" required
+               [(ngModel)]="model.configuracionName" name="configuracionName">
+        <!--<div [hidden]="configuracionName.valid || configuracionName.pristine"
+             class="alert alert-danger">
+          configuracionName is required
+        </div>-->
+      </div>
+
+      <div class="form-group">
+        <label for="processor">Processor</label>
+        <input type="text" class="form-control" id="processor" required
+               [(ngModel)]="model.processor" name="processor">
+        <!--<div [hidden]="processor.valid || processor.pristine"
+             class="alert alert-danger">
+          processor is required
+        </div>-->
+      </div>
+
+      <div class="form-group">
+        <label for="hardDrive">Hard Drive</label>
+        <input type="text" class="form-control" id="hardDrive" required
+               [(ngModel)]="model.hardDrive" name="hardDrive">
+        <!--<div [hidden]="hardDrive.valid || hardDrive.pristine"
+             class="alert alert-danger">
+          hardDrive is required
+        </div>-->
+      </div>
+
+      <div class="form-group">
+        <label for="memory">Memory</label>
+        <select class="form-control" id="memory"
+                required min="1"
+                [(ngModel)]="model.memoryId" name="memory">
+          <option [ngValue]="memory.memoryId" *ngFor="let memory of memoryList">{{memory.brand}} : {{memory.sizeGb}}GB {{memory.speed}}</option>
+        </select>
+        <!--<div [hidden]="memoryId.valid || memoryId.pristine"
+             class="alert alert-danger">
+          memory is required
+        </div>-->
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!computerForm.form.valid">Save</button>
+      <button (click)="goBack()">go back</button>
+
+    </form>
+
+  </div>
+</div>
