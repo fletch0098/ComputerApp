@@ -10,6 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { MessageService } from './messages/message.service';
+import { MessagesComponent } from './messages/messages.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +21,17 @@ import { AppRoutingModule } from './/app-routing.module';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-
+    MessagesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     AppRoutingModule
+
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 

@@ -9,8 +9,6 @@ import { ComputerManagementComponent } from '../computer-management/computer-man
 import { ComputersComponent } from '../computer-management/computers/computers.component';
 import { ComputerDetailComponent } from '../computer-management/computer-detail/computer-detail.component';
 import { ComputerService } from './computer.service';
-import { MessageService } from './message.service';
-import { MessagesComponent } from './messages/messages.component';
 
 import { AddMemoryComponent } from './memory/add-memory/add-memory.component';
 import { MemoryDetailComponent } from './memory/memory-detail/memory-detail.component';
@@ -42,13 +40,12 @@ import { MemoryFormComponent } from './memory/memory-form/memory-form.component'
     ComputerManagementComponent,
     ComputersComponent,
     ComputerDetailComponent,
-    MessagesComponent,
     DashboardComponent,
     ComputerSearchComponent,
     AddComputerComponent,
     ComputerFormComponent,
     AddMemoryComponent, MemoryDetailComponent, MemoryComponent, MemoryFormComponent
   ],
-  providers: [ComputerService, MessageService, MemoryService]
+  providers: [ComputerService, MemoryService]
 })
 export class ComputerManagementModule { }

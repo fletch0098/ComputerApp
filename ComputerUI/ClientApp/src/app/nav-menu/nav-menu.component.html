@@ -32,6 +32,11 @@
                 <span class='glyphicon glyphicon-th-list'></span> Manage Computers
               </a>
             </li>
+            <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]='["/view-logs"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-th-list'></span> View Logs
+              </a>
+            </li>
           </ul>
         </div>
     </div>
