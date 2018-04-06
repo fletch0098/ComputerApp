@@ -4,22 +4,31 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using ComputerLibrary.Models;
+using Microsoft.Extensions.Logging;
 
 namespace ComputerDAL
 {
-    public static class DbInitializer
+    public class DbInitializer
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private readonly ILogger<DbInitializer> _logger;
 
-        public static void Initialize(ComputerContext context)
+        public DbInitializer(ILogger<DbInitializer> logger)
+        {
+            _logger = logger;
+        }
+
+        public void Initialize(ComputerContext context)
         {
             context.Database.EnsureCreated();
 
             // Look for any students.
             if (context.Computers.Any())
             {
+                _logger.LogInformation("Database already Seeded");
                 return;   // DB has been seeded
             }
+
+            _logger.LogWarning("Preparing to Seed  database");
 
             var Memories = new Memory[]
             {
@@ -31,14 +40,7 @@ namespace ComputerDAL
 
             foreach (Memory m in Memories)
             {
-                try
-                {
-                    context.Memories.Add(m);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                context.Memories.Add(m);
             }
 
             var computers = new Computer[]
@@ -50,24 +52,20 @@ namespace ComputerDAL
             };
             foreach (Computer c in computers)
             {
-                try
-                { 
                 context.Computers.Add(c);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
             }
-            try { 
-            context.SaveChanges();
+
+            try
+            { 
+                context.SaveChanges();
             }
             catch (Exception ex)
             {
-                throw ex;
+                _logger.LogError("Database Seeding Error",ex);
             }
-            log.Info(string.Format("{0} : Seeded Database with {1} Memories", System.Reflection.MethodBase.GetCurrentMethod(), Memories.Count()));
-            log.Info(string.Format("{0} : Seeded Database with {1} Computers", System.Reflection.MethodBase.GetCurrentMethod(), computers.Count()));
+
+            _logger.LogInformation(string.Format("{0} : Seeded Database with {1} Memories", System.Reflection.MethodBase.GetCurrentMethod(), Memories.Count()));
+            _logger.LogInformation(string.Format("{0} : Seeded Database with {1} Computers", System.Reflection.MethodBase.GetCurrentMethod(), computers.Count()));
         }
     }
 }

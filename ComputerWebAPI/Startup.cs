@@ -13,6 +13,9 @@ using ComputerLibrary;
 using ComputerDAL;
 using ComputerLibrary.Models;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using NLog;
+using NLog.Web;
+using NLog.Web.AspNetCore;
 
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -67,10 +70,15 @@ namespace ComputerWebAPI
             {
                 c.SwaggerDoc("v1", new Info { Title = "ComputerApp API", Version = "v1" });
             });
+
+            services.AddTransient<ComputerManager>();
+            services.AddTransient<DbInitializer>();
+            services.AddTransient<ComputerLibrary.Business_Logic.ComputerBAL>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -94,6 +102,10 @@ namespace ComputerWebAPI
                 template: "{controller}/{action}/{id?}",
                 defaults: new { controller = "swagger", action = "Index" });
             });
+
+            //**********Logging******
+            env.ConfigureNLog("nlog.config");
+
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ComputerLibrary.Models;
 using ComputerDAL;
+using Microsoft.Extensions.Logging;
 
 
 namespace ComputerWebAPI.Controllers
@@ -9,45 +10,125 @@ namespace ComputerWebAPI.Controllers
     [Route("api/[controller]")]
     public class MemoryController : Controller
     {
+        private readonly ILogger<MemoryController> _logger;
         private IDataRepository<Memory, long> _iRepo;
-        public MemoryController(IDataRepository<Memory, long> repo)
+
+        public MemoryController(IDataRepository<Memory, long> repo, ILogger<MemoryController> logger)
         {
             _iRepo = repo;
+            _logger = logger;
         }
 
-        // GET: api/values
+        // GET api/[Controller]
         [HttpGet]
-        public IEnumerable<Memory> Get()
+        public IActionResult GetAll()
         {
-            return _iRepo.GetAll();
+            _logger.LogDebug("GET api/memory");
+            IActionResult ret = null;
+
+            var item = _iRepo.GetAll();
+
+            if (item == null)
+            {
+                ret = NotFound();
+            }
+            else
+            {
+                ret = new ObjectResult(item);
+            }
+
+            _logger.LogDebug("GET api/memory returned : {0}", ret);
+            return ret;
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public Memory Get(int id)
+        // GET api/[Controller]/5
+        [HttpGet("{id}", Name = "GetMemory")]
+        public IActionResult Get(long id)
         {
-            return _iRepo.Get(id);
+            _logger.LogDebug("GET api/memory/{0}", id);
+            IActionResult ret = null;
+
+            var item = _iRepo.Get(id);
+
+            if (item == null)
+            {
+                ret = NotFound();
+            }
+            else
+            {
+                ret = new ObjectResult(item);
+            }
+            _logger.LogDebug("GET api/memory/{0} returned : {1}", id, ret);
+            return ret;
         }
 
-        // POST api/values
         [HttpPost]
-        public long Post([FromBody]Memory entity)
+        public IActionResult Post([FromBody] Memory item)
         {
-            return _iRepo.Add(entity);
+            _logger.LogDebug("GET api/memory/post");
+            IActionResult ret = null;
+
+            if (item == null)
+            {
+                ret = BadRequest();
+            }
+            else
+            {
+                var id = _iRepo.Add(item);
+                ret = CreatedAtRoute("GetMemory", new { id = item.MemoryId }, item);
+            }
+
+            _logger.LogDebug("GET api/memory/post returned : {0}", ret);
+            return ret;
         }
 
-        // POST api/values
         [HttpPut]
-        public long Put([FromBody]Memory entity)
+        public IActionResult Put([FromBody] Memory item)
         {
-            return _iRepo.Update(entity.MemoryId, entity);
+            _logger.LogDebug("GET api/memory/Put");
+            IActionResult ret = null;
+
+            if (item == null)
+            {
+                ret = BadRequest();
+            }
+
+            else
+            {
+                var updatedId = _iRepo.Update(item.MemoryId, item);
+
+                if (updatedId == 0)
+                {
+                    ret = NotFound();
+                }
+                else
+                {
+                    ret = new ObjectResult(updatedId);
+                }
+            }
+            _logger.LogDebug("GET api/memory/put returned : {0}", ret);
+            return ret;
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
-        public long Delete(int id)
+        public IActionResult Delete(long id)
         {
-            return _iRepo.Delete(id);
+            _logger.LogDebug("GET api/memory/Delete");
+            IActionResult ret = null;
+
+            var item = _iRepo.Get(id);
+
+            if (item == null)
+            {
+                ret = NotFound();
+            }
+            else
+            {
+                var deletedId = _iRepo.Delete(id);
+                ret = new ObjectResult(deletedId);
+            }
+            _logger.LogDebug("GET api/memory/Delete returned : {0}", ret);
+            return ret;
         }
     }
 }
