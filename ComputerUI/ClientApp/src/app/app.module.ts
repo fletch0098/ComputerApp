@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Globals } from './globals';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -22,7 +23,7 @@ import { FooterComponent } from './footer/footer.component';
     CounterComponent,
     FetchDataComponent,
     MessagesComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,7 +32,7 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule
 
   ],
-  providers: [MessageService],
+  providers: [MessageService, Globals],
   bootstrap: [AppComponent]
 })
 

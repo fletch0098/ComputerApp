@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Memory } from '.././../computer';
 import { MemoryService } from '../memory.service';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-memory-form',
@@ -15,6 +17,8 @@ export class MemoryFormComponent implements OnInit {
 
   constructor(
     private memoryService: MemoryService,
+    private route: ActivatedRoute,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -27,19 +31,19 @@ export class MemoryFormComponent implements OnInit {
     console.log(this.model);
     if (this.model.memoryId != null) {
       this.memoryService.updateMemory(this.model)
-        .subscribe(() => this.clear());
+        .subscribe(() => this.goBack());
+    
     }
     else {
       this.memoryService.addMemory(this.model)
-        .subscribe(() => this.clear());
+        .subscribe(() => this.goBack());
     }
   }
 
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.model); }
 
-  clear(): void {
-    this.model = new Memory();
+  goBack(): void {
+    this.location.back();
   }
-
 }

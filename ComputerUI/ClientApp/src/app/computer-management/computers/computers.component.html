@@ -1,25 +1,12 @@
-<h2>My Computers</h2>
-<ul class="computers">
-  <li *ngFor="let computer of computers">
-    <a routerLink="detail/{{computer.computerId}}">
-      <span class="badge">{{computer.computerId}}</span> {{computer.configuracionName}}
-    </a>
-    <button class="delete" title="delete computer"
-            (click)="delete(computer)">
-      x
-    </button>
-  </li>
-</ul>
-
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
-      <h2>Brian´s Computer Company</h2>
+    <div class="text-center">
+      <h2>Computers</h2>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-6">
+  <div class="">
     <table id="productTable"
            class="table table-bordered
                  table-condensed table-striped">
@@ -37,21 +24,24 @@
       <tbody>
         <tr *ngFor="let computer of computers">
           <td>
-            <a routerLink="detail/{{computer.computerId}}" class="btn btn-default" >
+            <a routerLink="detail/{{computer.computerId}}" class="btn btn-primary">
               <span class="glyphicon glyphicon-edit"></span>
-              </a>
+            </a>
           </td>
           <td>{{computer.configuracionName}}</td>
           <td>{{computer.processor}}</td>
-          <td>{{computer.memory}}</td>
+          <td>{{computer.memory.brand}} : {{computer.memory.sizeGb}}GB {{computer.memory.speed}}</td>
           <td>{{computer.hardDrive}}</td>
           <td>{{computer.lastModified | date:"yyyy-MM-dd HH:mm:ss"}}</td>
-          <td><button class="btn btn-default" title="delete computer"
-        (click)="delete(computer)">
-                <span class='glyphicon glyphicon-remove'></span>
-</button></td>
+          <td>
+            <button class="btn btn-danger" title="delete computer"
+                    (click)="delete(computer)">
+              <span class='glyphicon glyphicon-remove'></span>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+<a routerLink="add" class="btn btn-primary">Add Computer</a>

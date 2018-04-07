@@ -21,6 +21,7 @@ import { AddComputerComponent } from './add-computer/add-computer.component';
 import { MemoryService } from './memory/memory.service';
 import { ComputerFormComponent } from './computer-form/computer-form.component';
 import { MemoryFormComponent } from './memory/memory-form/memory-form.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,7 @@ import { MemoryFormComponent } from './memory/memory-form/memory-form.component'
     ComputerSearchComponent,
     AddComputerComponent,
     ComputerFormComponent,
-    AddMemoryComponent, MemoryDetailComponent, MemoryComponent, MemoryFormComponent
+    AddMemoryComponent, MemoryDetailComponent, MemoryComponent, MemoryFormComponent, NavBarComponent
   ],
   providers: [ComputerService, MemoryService]
 })

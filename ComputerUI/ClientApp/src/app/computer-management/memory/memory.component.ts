@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Memory } from '../computer';
 import { MemoryService } from './memory.service';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-memory',
@@ -11,8 +13,11 @@ import { MemoryService } from './memory.service';
 export class MemoryComponent implements OnInit {
 
   memorys: Memory[];
+  memory: Memory;
 
-  constructor(private memoryService: MemoryService) { }
+  constructor(private memoryService: MemoryService,
+    private route: ActivatedRoute,
+    private location: Location) { }
 
   ngOnInit() {
     this.getMemorys();
@@ -21,6 +26,16 @@ export class MemoryComponent implements OnInit {
   getMemorys(): void {
     this.memoryService.getMemorys()
       .subscribe(memorys => this.memorys = memorys);
+  }
+
+  edit(memory: Memory): void {
+    this.memory = memory;
+    this.location.go("add-memory");
+    
+  }
+  add(): void {
+    this.memory = new Memory();
+    this.location.go("add-memory");
   }
 
   delete(memory: Memory): void {

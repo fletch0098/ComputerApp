@@ -35,9 +35,6 @@ export class ComputerFormComponent implements OnInit {
   getMemorys() {
     this.memoryService.getMemorys().subscribe(data => {
       this.memoryList = data;
-      if (this.model.memory == null) {
-        //this.model.memoryId = 0;
-      }
     });
   }
 

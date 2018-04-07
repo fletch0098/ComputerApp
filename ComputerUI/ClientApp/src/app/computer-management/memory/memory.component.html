@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
-      <h2>Brian´s Computer Company : Memory Management</h2>
+    <div class="text-center">
+      <h2>Computers</h2>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-6">
+  <div class="">
     <table id="memoryTable"
            class="table table-bordered
                  table-condensed table-striped">
@@ -23,16 +23,16 @@
       <tbody>
         <tr *ngFor="let memory of memorys">
           <td>
-            <a routerLink="detail/{{memory.memoryId}}" class="btn btn-default">
+            <a routerLink="detail/{{memory.memoryId}}" class="btn btn-primary">
               <span class="glyphicon glyphicon-edit"></span>
             </a>
           </td>
           <td>{{memory.brand}}</td>
-          <td>{{memory.sizeGB}} GB</td>
+          <td>{{memory.sizeGb}} GB</td>
           <td>{{memory.speed}}</td>
           <td>{{memory.lastModified | date:"yyyy-MM-dd HH:mm:ss"}}</td>
           <td>
-            <button class="btn btn-default" title="delete"
+            <button class="btn btn-danger" title="delete"
                     (click)="delete(memory)">
               <span class='glyphicon glyphicon-remove'></span>
             </button>
@@ -42,3 +42,5 @@
     </table>
   </div>
 </div>
+<a routerLink="add" class="btn btn-primary" >Add Memory</a>
+<app-memory-form></app-memory-form>

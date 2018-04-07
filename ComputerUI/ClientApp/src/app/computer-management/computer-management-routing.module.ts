@@ -19,9 +19,11 @@ const computerManagementRoutes: Routes = [
       {
         path: '',
         children: [
-          { path: 'add-computer', component: AddComputerComponent },
-          { path: 'computers', component: ComputersComponent },
-          { path: 'computers/detail/:id', component: ComputerDetailComponent },
+          { path: 'computer/add', component: AddComputerComponent },
+          { path: 'computer', component: ComputersComponent },
+          { path: 'computer/detail/:id', component: ComputerDetailComponent },
+          { path: 'memory/detail/:id', component: MemoryDetailComponent },
+          { path: 'memory/add', component: AddMemoryComponent },
           { path: 'dashboard', component: DashboardComponent },
           { path: 'memory', component: MemoryComponent },
           { path: '', redirectTo: 'dashboard', pathMatch: 'full' },

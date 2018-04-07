@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Globals } from '../globals';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -14,14 +15,13 @@ const httpOptions = {
 
 @Injectable()
 export class ComputerService {
-  private baseURL = 'https://computerwebapi20180331072552.azurewebsites.net/';
-  private localURL = 'http://localhost:53467/';
   private computersBase = 'api/computer';
-  private computersUrl = this.localURL + this.computersBase;  // URL to web api
+  private computersUrl = this.globals.baseURL + this.computersBase;  // URL to web api
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+  private globals: Globals) { }
 
   /** GET computers from the server */
   getComputers(): Observable<Computer[]> {

@@ -7,6 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Memory } from '../computer';
 import { MessageService } from '../..//messages/message.service';
+import { Globals } from '../../globals';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,14 +15,13 @@ const httpOptions = {
 
 @Injectable()
 export class MemoryService {
-  private baseURL = 'https://memorywebapi20180331072552.azurewebsites.net/';
-  private localURL = 'http://localhost:53467/';
   private memorysBase = 'api/memory';
-  private memorysUrl = this.localURL + this.memorysBase;  // URL to web api
+  private memorysUrl = this.globals.baseURL + this.memorysBase;  // URL to web api
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private globals: Globals) { }
 
   /** GET memorys from the server */
   getMemorys(): Observable<Memory[]> {

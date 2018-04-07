@@ -1,5 +1,5 @@
 /* AppComponent's private CSS styles */
-h1 {
+/*h1 {
   font-size: 1.2em;
   color: #999;
   margin-bottom: 0;
@@ -9,9 +9,9 @@ h2 {
   font-size: 2em;
   margin-top: 0;
   padding-top: 0;
-}
+}*/
 
-nav a {
+/*nav a {
   padding: 5px 10px;
   text-decoration: none;
   margin-top: 10px;
@@ -31,4 +31,7 @@ nav a {
 
   nav a.active {
     color: #039be5;
-  }
+  }*/
+/*@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');*/
+
+

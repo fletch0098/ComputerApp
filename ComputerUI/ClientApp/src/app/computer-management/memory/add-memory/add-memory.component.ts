@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { Memory } from '../../computer';
 
 @Component({
   selector: 'app-add-memory',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddMemoryComponent implements OnInit {
 
-  constructor() { }
+  memory: Memory = new Memory();
+
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
 
   ngOnInit() {
+
   }
 
+  goBack(): void {
+    this.location.back();
+  }
 }
