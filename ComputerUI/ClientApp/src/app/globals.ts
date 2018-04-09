@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 export class Globals {
   title: string = "Computer App";
-  //baseURL: string = 'https://computerwebapi20180331072552.azurewebsites.net/';
+  baseURL: string = 'https://computerwebapi20180331072552.azurewebsites.net/';
   //baseURL: string = 'http://localhost:53467/';
-  baseURL: string = 'http://localhost:61760/';
+  //baseURL: string = 'http://localhost:61760/';
 }
